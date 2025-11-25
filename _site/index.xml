@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Quarto</title>
+<link>https://your-website-url.example.com/</link>
+<atom:link href="https://your-website-url.example.com/index.xml" rel="self" type="application/rss+xml"/>
+<description>A blog built with Quarto</description>
+<generator>quarto-1.8.26</generator>
+<lastBuildDate>Mon, 24 Nov 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Post With Code</title>
+  <dc:creator>Harlow Malloc</dc:creator>
+  <link>https://your-website-url.example.com/posts/post-with-code/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>This is a post with executable code.</p>
+
+
+
+ ]]></description>
+  <category>news</category>
+  <category>code</category>
+  <category>analysis</category>
+  <guid>https://your-website-url.example.com/posts/post-with-code/</guid>
+  <pubDate>Mon, 24 Nov 2025 00:00:00 GMT</pubDate>
+  <media:content url="https://your-website-url.example.com/posts/post-with-code/image.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Welcome To My Blog</title>
+  <dc:creator>Tristan O&#39;Malley</dc:creator>
+  <link>https://your-website-url.example.com/posts/welcome/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>This is the first post in a Quarto blog. Welcome!</p>
+<p><img src="https://your-website-url.example.com/posts/welcome/thumbnail.jpg" class="img-fluid"></p>
+<p>Since this post doesn’t specify an explicit <code>image</code>, the first image in the post will be used in the listing page of posts.</p>
+
+
+
+ ]]></description>
+  <category>news</category>
+  <guid>https://your-website-url.example.com/posts/welcome/</guid>
+  <pubDate>Fri, 21 Nov 2025 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Atividade 2 — Linha de onibus</title>
+  <link>https://your-website-url.example.com/posts/post-with-code/atv2.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>import requests import folium</p>
+<section id="o-token-da-sptrans-olho-vivo-e-o-url-da-api" class="level1">
+<h1>O TOKEN da SPTrans Olho Vivo e o URL da API</h1>
+<p>TOKEN = “618131fea3517f368962174b971f521e5ee944d4cf746d772087c73588068a5a” # CORREÇÃO CRÍTICA: Removidas as chaves e parênteses do link Markdown API = “http://api.olhovivo.sptrans.com.br/v2.1”</p>
+</section>
+<section id="linha-de-ônibus-a-ser-pesquisada" class="level1">
+<h1>Linha de ônibus a ser pesquisada</h1>
+<p>linha_usuario = “2506”</p>
+</section>
+<section id="autenticação-na-api" class="level1">
+<h1>1. Autenticação na API</h1>
+<p>s = requests.Session() res = s.post(f”{API}/Login/Autenticar?token={TOKEN}“)</p>
+</section>
+<section id="verificação-de-autenticação-recomendado" class="level1">
+<h1>Verificação de Autenticação (Recomendado)</h1>
+<p>if res.text != ‘true’: # Este erro indica que o Token está provavelmente expirado e deve ser atualizado. raise Exception(f”Falha na autenticação da API. O token pode estar expirado. Resposta da API: {res.text}“)</p>
+<p>m</p>
+
+
+</section>
+
+ ]]></description>
+  <guid>https://your-website-url.example.com/posts/post-with-code/atv2.html</guid>
+  <pubDate>Tue, 25 Nov 2025 00:12:05 GMT</pubDate>
+</item>
+<item>
+  <title>Atividade 1 — Cotação do Dólar</title>
+  <link>https://your-website-url.example.com/posts/post-with-code/atv1.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<div id="beeeb095" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Mostrar código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> requests</span>
+<span id="cb1-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> pd</span>
+<span id="cb1-3"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> calendar</span>
+<span id="cb1-4"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> datetime <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> datetime</span>
+<span id="cb1-5"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> plotly.express <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> px</span>
+<span id="cb1-6"></span>
+<span id="cb1-7"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> cotacao_dolar_periodo(mmyyyy: <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">str</span>):</span>
+<span id="cb1-8"></span>
+<span id="cb1-9">    first_date <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> datetime.strptime(mmyyyy, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"%m%Y"</span>)</span>
+<span id="cb1-10">    last_day <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> calendar.monthrange(first_date.year, first_date.month)[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>]</span>
+<span id="cb1-11">    last_date <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> first_date.replace(day<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>last_day)</span>
+<span id="cb1-12"></span>
+<span id="cb1-13">    data_ini <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> first_date.strftime(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"%m-</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%d</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">-%Y"</span>)</span>
+<span id="cb1-14">    data_fim <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> last_date.strftime(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"%m-</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%d</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">-%Y"</span>)</span>
+<span id="cb1-15"></span>
+<span id="cb1-16">    url <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> (</span>
+<span id="cb1-17">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/"</span></span>
+<span id="cb1-18">        <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"CotacaoDolarPeriodo(dataInicial=@dataInicial,dataFinalCotacao=@dataFinalCotacao)?"</span></span>
+<span id="cb1-19">        <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"@dataInicial='</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>data_ini<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'&amp;@dataFinalCotacao='</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>data_fim<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'&amp;$format=json"</span></span>
+<span id="cb1-20">    )</span>
+<span id="cb1-21"></span>
+<span id="cb1-22">    response <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> requests.get(url)</span>
+<span id="cb1-23">    data <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> response.json()[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"value"</span>]</span>
+<span id="cb1-24"></span>
+<span id="cb1-25">    df <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> pd.DataFrame(data)</span>
+<span id="cb1-26"></span>
+<span id="cb1-27">    df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"dataHoraCotacao"</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> pd.to_datetime(df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"dataHoraCotacao"</span>]).dt.normalize()</span>
+<span id="cb1-28"></span>
+<span id="cb1-29">    df <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> df[[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"dataHoraCotacao"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"cotacaoCompra"</span>]]</span>
+<span id="cb1-30"></span>
+<span id="cb1-31">    datas_completas <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> pd.date_range(start<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>first_date, end<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>last_date)</span>
+<span id="cb1-32"></span>
+<span id="cb1-33">    df_final <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> pd.DataFrame({<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"data"</span>: datas_completas})</span>
+<span id="cb1-34"></span>
+<span id="cb1-35">    df_final[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"data"</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> pd.to_datetime(df_final[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"data"</span>]).dt.normalize()</span>
+<span id="cb1-36"></span>
+<span id="cb1-37">    df_merge <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> df_final.merge(</span>
+<span id="cb1-38">        df,</span>
+<span id="cb1-39">        how<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"left"</span>,</span>
+<span id="cb1-40">        left_on<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"data"</span>,</span>
+<span id="cb1-41">        right_on<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"dataHoraCotacao"</span></span>
+<span id="cb1-42">    )</span>
+<span id="cb1-43"></span>
+<span id="cb1-44">    df_merge[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"cotacaoCompra"</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> df_merge[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"cotacaoCompra"</span>].ffill()</span>
+<span id="cb1-45"></span>
+<span id="cb1-46">    fig <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> px.line(</span>
+<span id="cb1-47">        df_merge,</span>
+<span id="cb1-48">        x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"data"</span>,</span>
+<span id="cb1-49">        y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"cotacaoCompra"</span>,</span>
+<span id="cb1-50">        title<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Cotação do Dólar — </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>mmyyyy[:<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>]<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>mmyyyy[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>:]<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span>
+<span id="cb1-51">    )</span>
+<span id="cb1-52"></span>
+<span id="cb1-53">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> fig</span>
+<span id="cb1-54"></span>
+<span id="cb1-55">fig <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> cotacao_dolar_periodo(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"082021"</span>)</span>
+<span id="cb1-56">fig</span></code></pre></div></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG"></script><script type="text/javascript">if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}</script>                <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.2.0.min.js" integrity="sha256-iZ2u/oU2wf/vDbl/ChcX93WgbBRSBvUO6N413hDz7xM=" crossorigin="anonymous"></script>                <div id="37dbafca-29d7-46e7-a1ea-f7b62acb7587" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("37dbafca-29d7-46e7-a1ea-f7b62acb7587")) {                    Plotly.newPlot(                        "37dbafca-29d7-46e7-a1ea-f7b62acb7587",                        [{"hovertemplate":"data=%{x}\u003cbr\u003ecotacaoCompra=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"","line":{"color":"#636efa","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"","orientation":"v","showlegend":false,"x":["2021-08-01T00:00:00.000000000","2021-08-02T00:00:00.000000000","2021-08-03T00:00:00.000000000","2021-08-04T00:00:00.000000000","2021-08-05T00:00:00.000000000","2021-08-06T00:00:00.000000000","2021-08-07T00:00:00.000000000","2021-08-08T00:00:00.000000000","2021-08-09T00:00:00.000000000","2021-08-10T00:00:00.000000000","2021-08-11T00:00:00.000000000","2021-08-12T00:00:00.000000000","2021-08-13T00:00:00.000000000","2021-08-14T00:00:00.000000000","2021-08-15T00:00:00.000000000","2021-08-16T00:00:00.000000000","2021-08-17T00:00:00.000000000","2021-08-18T00:00:00.000000000","2021-08-19T00:00:00.000000000","2021-08-20T00:00:00.000000000","2021-08-21T00:00:00.000000000","2021-08-22T00:00:00.000000000","2021-08-23T00:00:00.000000000","2021-08-24T00:00:00.000000000","2021-08-25T00:00:00.000000000","2021-08-26T00:00:00.000000000","2021-08-27T00:00:00.000000000","2021-08-28T00:00:00.000000000","2021-08-29T00:00:00.000000000","2021-08-30T00:00:00.000000000","2021-08-31T00:00:00.000000000"],"xaxis":"x","y":{"dtype":"f8","bdata":"AAAAAAAA+H+U9gZfmIwUQF1txf6y+xRAL90kBoHVFEAT8kHPZpUUQGfV52or9hRAZ9Xnaiv2FEBn1edqK\u002fYUQJYhjnVxGxVAGJXUCWjiFECTOgFNhM0UQOOlm8Qg8BRAeJyiI7n8FEB4nKIjufwUQHicoiO5\u002fBRAyeU\u002fpN\u002f+FEC5jQbwFggVQEymCkYlNRVAz2bV52qrFUAwuycPC7UVQDC7Jw8LtRVAMLsnDwu1FUBGtvP91HgVQGpN845TNBVAeVioNc37FECASL99HfgUQDj4wmSq4BRAOPjCZKrgFEA4+MJkquAUQNc07zhFxxRAio7k8h+SFEA="},"yaxis":"y","type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"data"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"cotacaoCompra"}},"legend":{"tracegroupgap":0},"title":{"text":"Cota\u00e7\u00e3o do D\u00f3lar \u2014 08\u002f2021"}},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('37dbafca-29d7-46e7-a1ea-f7b62acb7587');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };            </script>        </div>
+</div>
+</div>
+
+
+
+ ]]></description>
+  <guid>https://your-website-url.example.com/posts/post-with-code/atv1.html</guid>
+  <pubDate>Tue, 25 Nov 2025 00:12:05 GMT</pubDate>
+</item>
+<item>
+  <title>Atividade 3 — Regressão Linear</title>
+  <link>https://your-website-url.example.com/posts/post-with-code/atv3.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="atividade-3-regressão-linear-anos-de-estudo-vs.-salário" class="level1">
+<h1>Atividade 3 — Regressão Linear: Anos de Estudo vs.&nbsp;Salário 💰</h1>
+<p>Nesta atividade, calculamos a regressão linear entre anos de estudo (X) e salário (Y) utilizando a solução matricial (<img src="https://latex.codecogs.com/png.latex?%5Cbeta%20=%20(X%5ET%20X)%5E%7B-1%7D%20X%5ET%20y">).</p>
+<hr>
+<section id="carregamento-dos-dados-e-cálculo-da-regressão" class="level2">
+<h2 class="anchored" data-anchor-id="carregamento-dos-dados-e-cálculo-da-regressão">1. Carregamento dos Dados e Cálculo da Regressão</h2>
+<div id="cc69d2fe" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Mostrar código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> np</span>
+<span id="cb1-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> pd</span>
+<span id="cb1-3"></span>
+<span id="cb1-4">valores_x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> np.array([<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">11</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">13</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">14</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">15</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">16</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">17</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">18</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">19</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>])</span>
+<span id="cb1-5">valores_y <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> np.array([<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2500</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3000</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3800</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4200</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5000</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5500</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6100</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6800</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">7500</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8100</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">9000</span>])</span>
+<span id="cb1-6"></span>
+<span id="cb1-7">X <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> np.vstack([np.ones(<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">len</span>(valores_x)), valores_x]).T</span>
+<span id="cb1-8">y <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> valores_y</span>
+<span id="cb1-9"></span>
+<span id="cb1-10">XTX_inv <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> np.linalg.inv(X.T <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">@</span> X)</span>
+<span id="cb1-11">beta <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> XTX_inv <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">@</span> X.T <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">@</span> y</span>
+<span id="cb1-12"></span>
+<span id="cb1-13">a <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> beta[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>]</span>
+<span id="cb1-14">b <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> beta[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>]</span></code></pre></div></div>
+</details>
+</div>
+</section>
+<section id="gráfico-da-regressão-estimada" class="level2">
+<h2 class="anchored" data-anchor-id="gráfico-da-regressão-estimada">2. Gráfico da Regressão Estimada</h2>
+<div id="223dd467" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Mostrar código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> plotnine <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> (</span>
+<span id="cb2-2">  ggplot, aes, geom_point, geom_abline, theme, element_text, ggsave) </span>
+<span id="cb2-3"></span>
+<span id="cb2-4"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> IPython.display <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> Image, display</span>
+<span id="cb2-5"></span>
+<span id="cb2-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Cria o DataFrame</span></span>
+<span id="cb2-7">df <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> {<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"x"</span>: valores_x, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"y"</span>: valores_y}</span>
+<span id="cb2-8"></span>
+<span id="cb2-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Cria o objeto plot</span></span>
+<span id="cb2-10">plot <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> (</span>
+<span id="cb2-11">  ggplot(pd.DataFrame(df), aes(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"x"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"y"</span>))</span>
+<span id="cb2-12">  <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> geom_point(color<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"blue"</span>)</span>
+<span id="cb2-13">  <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> geom_abline(intercept<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>a, slope<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>b, color<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"red"</span>, size<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb2-14">  <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> theme(text<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>element_text(size<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12</span>))</span>
+<span id="cb2-15">)</span>
+<span id="cb2-16"></span>
+<span id="cb2-17"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Salva a imagem no disco (necessário para evitar o KeyError)</span></span>
+<span id="cb2-18">nome_arquivo_png <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"grafico_regressao.png"</span></span>
+<span id="cb2-19">plot.save(nome_arquivo_png, width<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>, height<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>, units<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'in'</span>)</span>
+<span id="cb2-20"></span>
+<span id="cb2-21"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Carrega e exibe o arquivo PNG salvo, garantindo que ele apareça no blog.</span></span>
+<span id="cb2-22">display(Image(filename<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>nome_arquivo_png))</span></code></pre></div></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://your-website-url.example.com/posts/post-with-code/atv3_files/figure-html/cell-3-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <guid>https://your-website-url.example.com/posts/post-with-code/atv3.html</guid>
+  <pubDate>Tue, 25 Nov 2025 00:12:05 GMT</pubDate>
+</item>
+</channel>
+</rss>

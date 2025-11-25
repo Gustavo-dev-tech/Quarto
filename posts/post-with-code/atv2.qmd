@@ -1,0 +1,35 @@
+---
+title: "Atividade 2 — Linha de onibus"
+format:
+  html:
+    code-fold: true
+    code-summary: "Mostrar código"
+execute:
+  # Definindo 'echo: false' oculta o código Python, mostrando apenas o output (o mapa).
+  echo: false 
+  warning: false
+  message: false
+---
+
+```{python}
+import requests
+import folium
+
+# O TOKEN da SPTrans Olho Vivo e o URL da API
+TOKEN = "618131fea3517f368962174b971f521e5ee944d4cf746d772087c73588068a5a"
+# CORREÇÃO CRÍTICA: Removidas as chaves e parênteses do link Markdown
+API = "http://api.olhovivo.sptrans.com.br/v2.1" 
+
+# Linha de ônibus a ser pesquisada
+linha_usuario = "2506"
+
+# 1. Autenticação na API
+s = requests.Session()
+res = s.post(f"{API}/Login/Autenticar?token={TOKEN}")
+
+# Verificação de Autenticação (Recomendado)
+if res.text != 'true':
+    # Este erro indica que o Token está provavelmente expirado e deve ser atualizado.
+    raise Exception(f"Falha na autenticação da API. O token pode estar expirado. Resposta da API: {res.text}")
+
+m

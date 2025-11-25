@@ -1,0 +1,72 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Quarto",
+    "section": "",
+    "text": "Atividade 2 — Linha de onibus\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAtividade 1 — Cotação do Dólar\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAtividade 3 — Regressão Linear\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\nnews\n\ncode\n\nanalysis\n\n\n\n\n\n\n\n\n\nNov 24, 2025\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nNov 21, 2025\n\n\nTristan O’Malley\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html",
+    "href": "posts/post-with-code/index.html",
+    "title": "Post With Code",
+    "section": "",
+    "text": "This is a post with executable code."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this blog"
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+  },
+  {
+    "objectID": "posts/post-with-code/atv2.html",
+    "href": "posts/post-with-code/atv2.html",
+    "title": "Atividade 2 — Linha de onibus",
+    "section": "",
+    "text": "import requests import folium\n\nO TOKEN da SPTrans Olho Vivo e o URL da API\nTOKEN = “618131fea3517f368962174b971f521e5ee944d4cf746d772087c73588068a5a” # CORREÇÃO CRÍTICA: Removidas as chaves e parênteses do link Markdown API = “http://api.olhovivo.sptrans.com.br/v2.1”\n\n\nLinha de ônibus a ser pesquisada\nlinha_usuario = “2506”\n\n\n1. Autenticação na API\ns = requests.Session() res = s.post(f”{API}/Login/Autenticar?token={TOKEN}“)\n\n\nVerificação de Autenticação (Recomendado)\nif res.text != ‘true’: # Este erro indica que o Token está provavelmente expirado e deve ser atualizado. raise Exception(f”Falha na autenticação da API. O token pode estar expirado. Resposta da API: {res.text}“)\nm"
+  },
+  {
+    "objectID": "posts/post-with-code/atv3.html",
+    "href": "posts/post-with-code/atv3.html",
+    "title": "Atividade 3 — Regressão Linear",
+    "section": "",
+    "text": "Nesta atividade, calculamos a regressão linear entre anos de estudo (X) e salário (Y) utilizando a solução matricial (\\(\\beta = (X^T X)^{-1} X^T y\\)).\n\n\n\n\n\nMostrar código\nimport numpy as np\nimport pandas as pd\n\nvalores_x = np.array([10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20])\nvalores_y = np.array([2500, 3000, 3800, 4200, 5000, 5500, 6100, 6800, 7500, 8100, 9000])\n\nX = np.vstack([np.ones(len(valores_x)), valores_x]).T\ny = valores_y\n\nXTX_inv = np.linalg.inv(X.T @ X)\nbeta = XTX_inv @ X.T @ y\n\na = beta[0]\nb = beta[1]\n\n\n\n\n\n\n\nMostrar código\nfrom plotnine import (\n  ggplot, aes, geom_point, geom_abline, theme, element_text, ggsave) \n\nfrom IPython.display import Image, display\n\n# Cria o DataFrame\ndf = {\"x\": valores_x, \"y\": valores_y}\n\n# Cria o objeto plot\nplot = (\n  ggplot(pd.DataFrame(df), aes(\"x\", \"y\"))\n  + geom_point(color=\"blue\")\n  + geom_abline(intercept=a, slope=b, color=\"red\", size=1)\n  + theme(text=element_text(size=12))\n)\n\n# Salva a imagem no disco (necessário para evitar o KeyError)\nnome_arquivo_png = \"grafico_regressao.png\"\nplot.save(nome_arquivo_png, width=6, height=4, units='in')\n\n# Carrega e exibe o arquivo PNG salvo, garantindo que ele apareça no blog.\ndisplay(Image(filename=nome_arquivo_png))"
+  },
+  {
+    "objectID": "posts/post-with-code/atv3.html#carregamento-dos-dados-e-cálculo-da-regressão",
+    "href": "posts/post-with-code/atv3.html#carregamento-dos-dados-e-cálculo-da-regressão",
+    "title": "Atividade 3 — Regressão Linear",
+    "section": "",
+    "text": "Mostrar código\nimport numpy as np\nimport pandas as pd\n\nvalores_x = np.array([10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20])\nvalores_y = np.array([2500, 3000, 3800, 4200, 5000, 5500, 6100, 6800, 7500, 8100, 9000])\n\nX = np.vstack([np.ones(len(valores_x)), valores_x]).T\ny = valores_y\n\nXTX_inv = np.linalg.inv(X.T @ X)\nbeta = XTX_inv @ X.T @ y\n\na = beta[0]\nb = beta[1]"
+  },
+  {
+    "objectID": "posts/post-with-code/atv3.html#gráfico-da-regressão-estimada-1",
+    "href": "posts/post-with-code/atv3.html#gráfico-da-regressão-estimada-1",
+    "title": "Atividade 3 — Regressão Linear",
+    "section": "",
+    "text": "Mostrar código\nfrom plotnine import (\n  ggplot, aes, geom_point, geom_abline, theme, element_text, ggsave) \n\n# Importação CRUCIAL para exibir o arquivo PNG salvo\nfrom IPython.display import Image, display\n\n# Cria o DataFrame\ndf = {\"x\": valores_x, \"y\": valores_y}\n\n# Cria o objeto plot\nplot = (\n  ggplot(pd.DataFrame(df), aes(\"x\", \"y\"))\n  + geom_point(color=\"blue\")\n  + geom_abline(intercept=a, slope=b, color=\"red\", size=1)\n  + theme(text=element_text(size=12))\n)\n\n# Salva a imagem no disco (necessário para evitar o KeyError)\nnome_arquivo_png = \"grafico_regressao.png\"\nplot.save(nome_arquivo_png, width=6, height=4, units='in')\n\n# Carrega e exibe o arquivo PNG salvo, garantindo que ele apareça no blog.\ndisplay(Image(filename=nome_arquivo_png))\n\n\n\n\n\nRegressão Linear: Salário (y) vs. Anos de Estudo (x)"
+  },
+  {
+    "objectID": "posts/post-with-code/atv1.html",
+    "href": "posts/post-with-code/atv1.html",
+    "title": "Atividade 1 — Cotação do Dólar",
+    "section": "",
+    "text": "Mostrar código\nimport requests\nimport pandas as pd\nimport calendar\nfrom datetime import datetime\nimport plotly.express as px\n\ndef cotacao_dolar_periodo(mmyyyy: str):\n\n    first_date = datetime.strptime(mmyyyy, \"%m%Y\")\n    last_day = calendar.monthrange(first_date.year, first_date.month)[1]\n    last_date = first_date.replace(day=last_day)\n\n    data_ini = first_date.strftime(\"%m-%d-%Y\")\n    data_fim = last_date.strftime(\"%m-%d-%Y\")\n\n    url = (\n        \"https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/\"\n        f\"CotacaoDolarPeriodo(dataInicial=@dataInicial,dataFinalCotacao=@dataFinalCotacao)?\"\n        f\"@dataInicial='{data_ini}'&@dataFinalCotacao='{data_fim}'&$format=json\"\n    )\n\n    response = requests.get(url)\n    data = response.json()[\"value\"]\n\n    df = pd.DataFrame(data)\n\n    df[\"dataHoraCotacao\"] = pd.to_datetime(df[\"dataHoraCotacao\"]).dt.normalize()\n\n    df = df[[\"dataHoraCotacao\", \"cotacaoCompra\"]]\n\n    datas_completas = pd.date_range(start=first_date, end=last_date)\n\n    df_final = pd.DataFrame({\"data\": datas_completas})\n\n    df_final[\"data\"] = pd.to_datetime(df_final[\"data\"]).dt.normalize()\n\n    df_merge = df_final.merge(\n        df,\n        how=\"left\",\n        left_on=\"data\",\n        right_on=\"dataHoraCotacao\"\n    )\n\n    df_merge[\"cotacaoCompra\"] = df_merge[\"cotacaoCompra\"].ffill()\n\n    fig = px.line(\n        df_merge,\n        x=\"data\",\n        y=\"cotacaoCompra\",\n        title=f\"Cotação do Dólar — {mmyyyy[:2]}/{mmyyyy[2:]}\"\n    )\n\n    return fig\n\nfig = cotacao_dolar_periodo(\"082021\")\nfig"
+  },
+  {
+    "objectID": "posts/post-with-code/atv3.html#gráfico-da-regressão-estimada",
+    "href": "posts/post-with-code/atv3.html#gráfico-da-regressão-estimada",
+    "title": "Atividade 3 — Regressão Linear",
+    "section": "",
+    "text": "Mostrar código\nfrom plotnine import (\n  ggplot, aes, geom_point, geom_abline, theme, element_text, ggsave) \n\nfrom IPython.display import Image, display\n\n# Cria o DataFrame\ndf = {\"x\": valores_x, \"y\": valores_y}\n\n# Cria o objeto plot\nplot = (\n  ggplot(pd.DataFrame(df), aes(\"x\", \"y\"))\n  + geom_point(color=\"blue\")\n  + geom_abline(intercept=a, slope=b, color=\"red\", size=1)\n  + theme(text=element_text(size=12))\n)\n\n# Salva a imagem no disco (necessário para evitar o KeyError)\nnome_arquivo_png = \"grafico_regressao.png\"\nplot.save(nome_arquivo_png, width=6, height=4, units='in')\n\n# Carrega e exibe o arquivo PNG salvo, garantindo que ele apareça no blog.\ndisplay(Image(filename=nome_arquivo_png))"
+  }
+]
